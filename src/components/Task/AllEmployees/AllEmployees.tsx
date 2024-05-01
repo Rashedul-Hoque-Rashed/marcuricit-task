@@ -1,11 +1,25 @@
 import './allEmployees.scss';
-import { Card, Dropdown, FloatingLabel, Form } from "react-bootstrap";
-
-// images
-import avatar from "../../../assets/images/users/avatar-7.jpg";
+import { Button, Card, Col, Dropdown, FloatingLabel, Form, InputGroup, Modal } from "react-bootstrap";
 import { employeesData } from './data';
+import { useState } from 'react';
 
 const AllEmployees = () => {
+  const [showCenteredModal, setShowCenteredModal] = useState<boolean>(false);
+  const [showScrollableModal, setShowScrollableModal] = useState<boolean>(false);
+  const [validated, setValidated] = useState<boolean>(false);
+
+  /*
+   * handle form submission
+   */
+  const handleSubmit = (event: any) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
 
 
   return (
@@ -18,8 +32,183 @@ const AllEmployees = () => {
         <div className="actionContainer">
           <i className="uil uil-grid fs-24"></i>
           <i className="uil uil-list-ul fs-24"></i>
-          <button>+ Add Employee</button>
+          <button onClick={() => setShowScrollableModal(true)}>+ Add Employee</button>
         </div>
+
+
+        <Modal
+          show={showScrollableModal}
+          onHide={() => setShowScrollableModal(false)}
+          scrollable
+        >
+          <Modal.Header onHide={() => setShowScrollableModal(false)} closeButton>
+            <Modal.Title as="h5">Add Employee</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form className='addEmployeeForm' noValidate validated={validated} onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="validationCustom01">
+                <Form.Label>First name</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="First name"
+                  defaultValue="Mark"
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustom02">
+                <Form.Label>Last name</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Last name"
+                  defaultValue="Otto"
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustomUsername">
+                <Form.Label>Username</Form.Label>
+                <InputGroup hasValidation>
+                  <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please choose a username.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustomEmail">
+                <Form.Label>Email</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please choose your email.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustomPassword">
+                <Form.Label>Password</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please choose a password.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustomConfirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="password"
+                    placeholder="Confirm Password"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please confirm your password.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustomEmployeeID">
+                <Form.Label>Employee ID</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="text"
+                    placeholder="Employee ID"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please choose a employee id.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustomEmployeeID">
+                <Form.Label>Joining Date</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="date"
+                    placeholder="Joining Date"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please select your joining date.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="validationCustomEmployeeID">
+                <Form.Label>Phone</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="text"
+                    placeholder="Phone"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please enter your phone number.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>
+                  Company
+                </Form.Label>
+                <Col>
+                  <Form.Select>
+                    <option>Global Technologies</option>
+                    <option>Delta Infotech</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>
+                  Department
+                </Form.Label>
+                <Col>
+                  <Form.Select>
+                    <option>Web Development</option>
+                    <option>IT Management</option>
+                    <option>Marketing</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>
+                  Designation
+                </Form.Label>
+                <Col>
+                  <Form.Select>
+                    <option>Web Developer</option>
+                    <option>Web Designer</option>
+                    <option>IOS Developer</option>
+                    <option>Marketing</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+
+              <Button type="submit">Submit</Button>
+            </Form>
+          </Modal.Body>
+        </Modal>
+
+
+
       </div>
       <div className="wrapper">
         <FloatingLabel
@@ -37,19 +226,19 @@ const AllEmployees = () => {
           <Form.Control type="text" placeholder="Employee Name" />
         </FloatingLabel>
         <FloatingLabel
-            controlId="floatingSelectGrid"
-            label="Designation"
-          >
-            <Form.Select aria-label="Floating label select">
-              <option>Select Designation</option>
-              <option value="1">John Smith</option>
-              <option value="2">Emily Johnson</option>
-              <option value="3">Michael Brown</option>
-            </Form.Select>
-          </FloatingLabel>
-          <button className="btn-success width-sm">
-            SEARCH
-          </button>
+          controlId="floatingSelectGrid"
+          label="Designation"
+        >
+          <Form.Select aria-label="Floating label select">
+            <option>Select Designation</option>
+            <option value="1">John Smith</option>
+            <option value="2">Emily Johnson</option>
+            <option value="3">Michael Brown</option>
+          </Form.Select>
+        </FloatingLabel>
+        <button className="btn-success width-sm">
+          SEARCH
+        </button>
         {
           employeesData.map(data => (
             <Card className="employeeCard">
@@ -58,13 +247,31 @@ const AllEmployees = () => {
                   <i className="uil uil-ellipsis-v fs-16 text-black"></i>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item>
+                  <Dropdown.Item onClick={() => setShowScrollableModal(true)}>
                     <i className="uil uil-edit-alt me-2"></i>Edit
                   </Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item className="text-danger">
+                  <Dropdown.Item className="text-danger" onClick={() => setShowCenteredModal(true)}>
                     <i className="uil uil-trash me-2"></i>Delete
                   </Dropdown.Item>
+                  <Modal
+                    show={showCenteredModal}
+                    onHide={() => setShowCenteredModal(false)}
+                    centered
+                  >
+                    <Modal.Header onHide={() => setShowCenteredModal(false)} closeButton>
+                    </Modal.Header>
+                    <Modal.Body className='text-center'>
+                      <h3>Delete Employee</h3>
+                      <h6>Are you sure want to delete?</h6>
+                    </Modal.Body>
+                    <Modal.Footer className='mx-auto'>
+                      <Button variant="danger">Delete</Button>
+                      <Button variant="light" onClick={() => setShowCenteredModal(false)}>
+                        Cancel
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </Dropdown.Menu>
               </Dropdown>
 
