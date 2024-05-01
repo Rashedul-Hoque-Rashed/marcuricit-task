@@ -1,5 +1,5 @@
 import './allEmployees.scss';
-import { Card, Dropdown } from "react-bootstrap";
+import { Card, Dropdown, FloatingLabel, Form } from "react-bootstrap";
 
 // images
 import avatar from "../../../assets/images/users/avatar-7.jpg";
@@ -16,12 +16,40 @@ const AllEmployees = () => {
           <h4>Dashboard / Employee</h4>
         </div>
         <div className="actionContainer">
-        <i className="uil uil-grid fs-24"></i>
-        <i className="uil uil-list-ul fs-24"></i>
+          <i className="uil uil-grid fs-24"></i>
+          <i className="uil uil-list-ul fs-24"></i>
           <button>+ Add Employee</button>
         </div>
       </div>
       <div className="wrapper">
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Employee ID"
+          className="mb-3"
+        >
+          <Form.Control type="text" placeholder="Employee ID" />
+        </FloatingLabel>
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Employee Name"
+          className="mb-3"
+        >
+          <Form.Control type="text" placeholder="Employee Name" />
+        </FloatingLabel>
+        <FloatingLabel
+            controlId="floatingSelectGrid"
+            label="Designation"
+          >
+            <Form.Select aria-label="Floating label select">
+              <option>Select Designation</option>
+              <option value="1">John Smith</option>
+              <option value="2">Emily Johnson</option>
+              <option value="3">Michael Brown</option>
+            </Form.Select>
+          </FloatingLabel>
+          <button className="btn-success width-sm">
+            SEARCH
+          </button>
         {
           employeesData.map(data => (
             <Card className="employeeCard">
