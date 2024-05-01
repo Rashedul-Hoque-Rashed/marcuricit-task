@@ -36,6 +36,7 @@ const MENU_ITEMS: MenuItemTypes[] = [
     ],
   },
   { key: "apps", label: "Apps", isTitle: true },
+  // task start
   {
     key: "apps-employees",
     label: "Employees",
@@ -87,6 +88,7 @@ const MENU_ITEMS: MenuItemTypes[] = [
       
     ],
   },
+  // task end
   {
     key: "apps-calendar",
     label: "Calendar",

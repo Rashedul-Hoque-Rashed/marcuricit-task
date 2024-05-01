@@ -3,6 +3,13 @@ import { Navigate, Route, RouteProps } from "react-router-dom";
 
 // components
 import PrivateRoute from "./PrivateRoute";
+import AllEmployees from "../components/Task/AllEmployees/AllEmployees";
+import Holiday from "../components/Task/Holiday/Holiday";
+import LeavesAdmin from "../components/Task/LeavesAdmin/LeavesAdmin";
+import LeavesEmployee from "../components/Task/LeavesEmployee/LeavesEmployee";
+import LeaveSettings from "../components/Task/LeaveSettings/LeaveSettings";
+import AttendanceAdmin from "../components/Task/AttendanceAdmin/AttendanceAdmin";
+import AttendanceEmployee from "../components/Task/AttendanceEmployee/AttendanceEmployee";
 // import Root from "./Root";
 
 // lazy load all the views
@@ -125,6 +132,60 @@ const dashboardRoutes: RoutesProps = {
   ],
 };
 
+// task start
+const employeesAppRoutes: RoutesProps = {
+  path: "/apps/employees",
+  name: "Employees",
+  route: PrivateRoute,
+  roles: ["Admin"],
+  icon: "users",
+  children: [
+    {
+      path: "/apps/employees/allEmployees",
+      name: "All Employees",
+      element: <AllEmployees />,
+      route: PrivateRoute,
+    },
+    {
+      path: "/apps/employees/holidays",
+      name: "Holidays",
+      element: <Holiday />,
+      route: PrivateRoute,
+    },
+    {
+      path: "/apps/employees/leavesAdmin",
+      name: "Leaves (Admin)",
+      element: <LeavesAdmin />,
+      route: PrivateRoute,
+    },
+    {
+      path: "/apps/employees/leavesEmployee",
+      name: "Leaves (Employee)",
+      element: <LeavesEmployee />,
+      route: PrivateRoute,
+    },
+    {
+      path: "/apps/employees/leaveSettings",
+      name: "Leave Settings",
+      element: <LeaveSettings />,
+      route: PrivateRoute,
+    },
+    {
+      path: "/apps/employees/attendanceAdmin",
+      name: "Attendance (Admin)",
+      element: <AttendanceAdmin />,
+      route: PrivateRoute,
+    },
+    {
+      path: "/apps/employees/attendanceEmployee",
+      name: "Attendance (Employee)",
+      element: <AttendanceEmployee />,
+      route: PrivateRoute,
+    },
+  ],
+};
+// task end
+
 const calendarAppRoutes: RoutesProps = {
   path: "/apps/calendar",
   name: "Calendar",
@@ -227,6 +288,7 @@ const fileAppRoutes: RoutesProps = {
 };
 
 const appRoutes = [
+  employeesAppRoutes,
   calendarAppRoutes,
   chatAppRoutes,
   emailAppRoutes,
