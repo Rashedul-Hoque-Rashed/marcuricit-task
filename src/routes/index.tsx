@@ -134,50 +134,50 @@ const dashboardRoutes: RoutesProps = {
 
 // task start
 const employeesAppRoutes: RoutesProps = {
-  path: "/apps/employees",
+  path: "/task/employees",
   name: "Employees",
   route: PrivateRoute,
   roles: ["Admin"],
   icon: "users",
   children: [
     {
-      path: "/apps/employees/allEmployees",
+      path: "/task/employees/allEmployees",
       name: "All Employees",
       element: <AllEmployees />,
       route: PrivateRoute,
     },
     {
-      path: "/apps/employees/holidays",
+      path: "/task/employees/holidays",
       name: "Holidays",
       element: <Holiday />,
       route: PrivateRoute,
     },
     {
-      path: "/apps/employees/leavesAdmin",
+      path: "/task/employees/leavesAdmin",
       name: "Leaves (Admin)",
       element: <LeavesAdmin />,
       route: PrivateRoute,
     },
     {
-      path: "/apps/employees/leavesEmployee",
+      path: "/task/employees/leavesEmployee",
       name: "Leaves (Employee)",
       element: <LeavesEmployee />,
       route: PrivateRoute,
     },
     {
-      path: "/apps/employees/leaveSettings",
+      path: "/task/employees/leaveSettings",
       name: "Leave Settings",
       element: <LeaveSettings />,
       route: PrivateRoute,
     },
     {
-      path: "/apps/employees/attendanceAdmin",
+      path: "/task/employees/attendanceAdmin",
       name: "Attendance (Admin)",
       element: <AttendanceAdmin />,
       route: PrivateRoute,
     },
     {
-      path: "/apps/employees/attendanceEmployee",
+      path: "/task/employees/attendanceEmployee",
       name: "Attendance (Employee)",
       element: <AttendanceEmployee />,
       route: PrivateRoute,
