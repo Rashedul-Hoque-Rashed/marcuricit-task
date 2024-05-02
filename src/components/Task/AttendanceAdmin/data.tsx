@@ -1,8 +1,16 @@
+import avatar1 from '../../../assets/images/users/avatar-1.jpg';
+import avatar2 from '../../../assets/images/users/avatar-2.jpg';
+import avatar3 from '../../../assets/images/users/avatar-3.jpg';
+import avatar4 from '../../../assets/images/users/avatar-4.jpg';
+import avatar5 from '../../../assets/images/users/avatar-5.jpg';
+import avatar6 from '../../../assets/images/users/avatar-6.jpg';
+import avatar7 from '../../../assets/images/users/avatar-7.jpg';
+
 export const attendanceData = [
     {
         "id": 1,
         "employeeName": "John Doe",
-        "img": "john_doe.jpg",
+        "img": avatar1,
         "attendance": [
             { "day": 1, "status": "present", "date": "2024-04-01", "punchIn": "08:00", "punchOut": "17:00", "break": "12:00-13:00", "overtime": "0" },
             { "day": 2, "status": "absent" },
@@ -39,7 +47,7 @@ export const attendanceData = [
     {
         "id": 2,
         "employeeName": "Jane Smith",
-        "img": "jane_smith.jpg",
+        "img": avatar2,
         "attendance": [
             { "day": 1, "status": "present", "date": "2024-04-01", "punchIn": "08:00", "punchOut": "17:00", "break": "12:00-13:00", "overtime": "0" },
             { "day": 2, "status": "absent" },
@@ -76,7 +84,7 @@ export const attendanceData = [
     {
         "id": 3,
         "employeeName": "Alice Johnson",
-        "img": "alice_johnson.jpg",
+        "img": avatar3,
         "attendance": [
             { "day": 1, "status": "present", "date": "2024-04-01", "punchIn": "08:00", "punchOut": "17:00", "break": "12:00-13:00", "overtime": "0" },
             { "day": 2, "status": "absent" },
@@ -113,7 +121,7 @@ export const attendanceData = [
     {
         "id": 4,
         "employeeName": "Michael Brown",
-        "img": "michael_brown.jpg",
+        "img": avatar4,
         "attendance": [
             { "day": 1, "status": "present", "date": "2024-04-01", "punchIn": "08:00", "punchOut": "17:00", "break": "12:00-13:00", "overtime": "0" },
             { "day": 2, "status": "absent" },
@@ -150,7 +158,7 @@ export const attendanceData = [
     {
         "id": 5,
         "employeeName": "Emily Davis",
-        "img": "emily_davis.jpg",
+        "img": avatar5,
         "attendance": [
             { "day": 1, "status": "present", "date": "2024-04-01", "punchIn": "08:00", "punchOut": "17:00", "break": "12:00-13:00", "overtime": "0" },
             { "day": 2, "status": "absent" },
@@ -187,7 +195,7 @@ export const attendanceData = [
     {
         "id": 6,
         "employeeName": "David Wilson",
-        "img": "david_wilson.jpg",
+        "img": avatar6,
         "attendance": [
             { "day": 1, "status": "present", "date": "2024-04-01", "punchIn": "08:00", "punchOut": "17:00", "break": "12:00-13:00", "overtime": "0" },
             { "day": 2, "status": "absent" },
@@ -224,7 +232,7 @@ export const attendanceData = [
     {
         "id": 7,
         "employeeName": "Jessica Martinez",
-        "img": "jessica_martinez.jpg",
+        "img": avatar7,
         "attendance": [
             { "day": 1, "status": "present", "date": "2024-04-01", "punchIn": "08:00", "punchOut": "17:00", "break": "12:00-13:00", "overtime": "0" },
             { "day": 2, "status": "absent" },
