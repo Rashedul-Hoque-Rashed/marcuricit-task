@@ -1,13 +1,14 @@
 import { Card, Col, Dropdown, FloatingLabel, Form, Modal, Row } from 'react-bootstrap';
 import './leavesAdmin.scss';
 import { useState } from 'react';
-import {leavesData} from './data'
+import { leavesData } from './data'
 import Table from '../../Table';
 import { Button } from 'react-bootstrap';
-import {CellProps} from 'react-table'
+import { CellProps } from 'react-table'
 
 const LeavesAdmin = () => {
-
+    const [showCenteredModal4, setShowCenteredModal4] = useState<boolean>(false);
+    const [showCenteredModal5, setShowCenteredModal5] = useState<boolean>(false);
 
     const columns = [
         {
@@ -67,7 +68,7 @@ const LeavesAdmin = () => {
                                 <i className="uil uil-ellipsis-v fs-16 text-black"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item>
+                                <Dropdown.Item onClick={() => setShowCenteredModal4(true)}>
                                     <i className="uil uil-edit-alt me-2"></i>Edit
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
@@ -78,44 +79,85 @@ const LeavesAdmin = () => {
                         </Dropdown>
 
 
-                        {/* <Modal
-                            show={showCenteredModal2}
-                            onHide={() => setShowCenteredModal2(false)}
+                        <Modal
+                            show={showCenteredModal4}
+                            onHide={() => setShowCenteredModal4(false)}
                             centered
                         >
                             <Modal.Header closeButton>
-                                <h2>Edit Holiday</h2>
+                                <h2>Edit Leaves</h2>
                             </Modal.Header>
                             <Modal.Body>
                                 <Form>
                                     <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="title">Holiday Name</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            name="title"
-                                            id="title"
-                                        />
+                                        <Form.Label>
+                                            Leaves Type
+                                        </Form.Label>
+                                        <Col>
+                                            <Form.Select>
+                                                <option>Casual Leave</option>
+                                                <option>Medical Leave</option>
+                                                <option>Loss of Pay</option>
+                                            </Form.Select>
+                                        </Col>
                                     </Form.Group>
-
-                                    <Form.Group className="">
-                                        <Form.Label htmlFor="date">Holiday Date</Form.Label>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="title">From</Form.Label>
                                         <Form.Control
                                             type="date"
-                                            name="date"
-                                            id="date"
+                                            name="from"
+                                            id="from"
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="title">To</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            name="to"
+                                            id="to"
                                         />
                                     </Form.Group>
 
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="date">Number Of Day</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            name="noOfDay"
+                                            id="noOfDay"
+                                            min={0}
+                                            max={12}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="date">Remaining Leaves</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            name="noOfDay"
+                                            id="noOfDay"
+                                            max={12}
+                                            min={0}
+                                        />
+                                    </Form.Group>
 
-                    
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="example-textarea">
+                                            Leave Reason
+                                        </Form.Label>
+                                        <Col>
+                                            <Form.Control as="textarea" rows={3} id="example-textarea" />
+                                        </Col>
+                                    </Form.Group>
+
+
+
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer className='mx-auto'>
-                            <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
                             </Modal.Footer>
-                        </Modal> */}
+                        </Modal>
 
 
                         <Modal
@@ -172,47 +214,88 @@ const LeavesAdmin = () => {
                     <h4>Dashboard / Leaves</h4>
                 </div>
                 <div className="actionContainer">
-                    <button>+ Add Leave</button>
+                    <button onClick={() => setShowCenteredModal5(true)}>+ Add Leave</button>
                 </div>
 
-                {/* <Modal
-                            show={showCenteredModal3}
-                            onHide={() => setShowCenteredModal3(false)}
+                <Modal
+                            show={showCenteredModal5}
+                            onHide={() => setShowCenteredModal5(false)}
                             centered
                         >
                             <Modal.Header closeButton>
-                                <h2>Add Holiday</h2>
+                                <h2>Add Leaves</h2>
                             </Modal.Header>
                             <Modal.Body>
                                 <Form>
                                     <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="title">Holiday Name</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            name="title"
-                                            id="title"
-                                        />
+                                        <Form.Label>
+                                            Leaves Type
+                                        </Form.Label>
+                                        <Col>
+                                            <Form.Select>
+                                                <option>Casual Leave</option>
+                                                <option>Medical Leave</option>
+                                                <option>Loss of Pay</option>
+                                            </Form.Select>
+                                        </Col>
                                     </Form.Group>
-
-                                    <Form.Group className="">
-                                        <Form.Label htmlFor="date">Holiday Date</Form.Label>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="title">From</Form.Label>
                                         <Form.Control
                                             type="date"
-                                            name="date"
-                                            id="date"
+                                            name="from"
+                                            id="from"
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="title">To</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            name="to"
+                                            id="to"
                                         />
                                     </Form.Group>
 
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="date">Number Of Day</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            name="noOfDay"
+                                            id="noOfDay"
+                                            min={0}
+                                            max={12}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="date">Remaining Leaves</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            name="noOfDay"
+                                            id="noOfDay"
+                                            max={12}
+                                            min={0}
+                                        />
+                                    </Form.Group>
 
-                    
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="example-textarea">
+                                            Leave Reason
+                                        </Form.Label>
+                                        <Col>
+                                            <Form.Control as="textarea" rows={3} id="example-textarea" />
+                                        </Col>
+                                    </Form.Group>
+
+
+
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer className='mx-auto'>
-                            <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
                             </Modal.Footer>
-                        </Modal> */}
+                        </Modal>
 
             </div>
             <div className="boxes">
@@ -234,54 +317,54 @@ const LeavesAdmin = () => {
                 </div>
             </div>
             <div className="input">
-          <FloatingLabel
-            controlId="floatingInput"
-            label="Employee Name"
-            className="mb-3"
-          >
-            <Form.Control type="text" placeholder="Employee Name" />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingSelectGrid"
-            label="Leave Type"
-          >
-            <Form.Select aria-label="--Select--">
-              <option value="1">Casual Leave</option>
-              <option value="2">Medical Leave</option>
-              <option value="3">Loss of Pay</option>
-            </Form.Select>
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingSelectGrid"
-            label="Leave Status"
-          >
-            <Form.Select aria-label="--Select--">
-              <option value="1">Approve</option>
-              <option value="2">Pending</option>
-              <option value="3">Decline</option>
-            </Form.Select>
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="From"
-            className="mb-3"
-          >
-            <Form.Control type="date" placeholder="From" />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="To"
-            className="mb-3"
-          >
-            <Form.Control type="date" placeholder="To" />
-          </FloatingLabel>
-          <button className="btn-success width-sm">
-            SEARCH
-          </button>
-        </div>
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="Employee Name"
+                    className="mb-3"
+                >
+                    <Form.Control type="text" placeholder="Employee Name" />
+                </FloatingLabel>
+                <FloatingLabel
+                    controlId="floatingSelectGrid"
+                    label="Leave Type"
+                >
+                    <Form.Select aria-label="--Select--">
+                        <option value="1">Casual Leave</option>
+                        <option value="2">Medical Leave</option>
+                        <option value="3">Loss of Pay</option>
+                    </Form.Select>
+                </FloatingLabel>
+                <FloatingLabel
+                    controlId="floatingSelectGrid"
+                    label="Leave Status"
+                >
+                    <Form.Select aria-label="--Select--">
+                        <option value="1">Approve</option>
+                        <option value="2">Pending</option>
+                        <option value="3">Decline</option>
+                    </Form.Select>
+                </FloatingLabel>
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="From"
+                    className="mb-3"
+                >
+                    <Form.Control type="date" placeholder="From" />
+                </FloatingLabel>
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="To"
+                    className="mb-3"
+                >
+                    <Form.Control type="date" placeholder="To" />
+                </FloatingLabel>
+                <button className="btn-success width-sm">
+                    SEARCH
+                </button>
+            </div>
 
 
-        <Row>
+            <Row>
                 <Col>
                     <Card>
                         <Card.Body>
