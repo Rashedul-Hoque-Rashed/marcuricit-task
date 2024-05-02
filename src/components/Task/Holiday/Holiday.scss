@@ -1,0 +1,39 @@
+.holiday{
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+
+
+        .addEmployeeForm {
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+
+
+        .actionContainer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+
+            button {
+                margin-left: 16px;
+                border-radius: 50px;
+                padding: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                border-color: #58a6ff;
+
+                &:hover {
+                    background-color: #58a6ff;
+                }
+            }
+        }
+    }
+}
+
+.label{
+    text-align: start;
+}
