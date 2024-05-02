@@ -1,7 +1,66 @@
-import { ProgressBar } from 'react-bootstrap';
+import { Card, Col, FloatingLabel, Form, ProgressBar, Row } from 'react-bootstrap';
 import './AttendanceEmployee.scss'
+import {attendanceData} from './data'
+import Table from '../../Table';
 
 const AttendanceEmployee = () => {
+
+
+
+    const columns = [
+        {
+          Header: "ID",
+          accessor: "id",
+          sort: true,
+        },
+        {
+          Header: "Date",
+          accessor: "date",
+          sort: true,
+        },
+        {
+          Header: "PunchIn",
+          accessor: "punchInTime",
+          sort: true,
+        },
+        {
+          Header: "PunchOut",
+          accessor: "punchOutTime",
+          sort: true,
+        },
+        {
+          Header: "Break",
+          accessor: "break",
+          sort: true,
+        },
+        {
+          Header: "Overtime",
+          accessor: "overtime",
+          sort: true,
+        },
+      ];
+    
+      const sizePerPageList = [
+        {
+          text: "5",
+          value: 5,
+        },
+        {
+          text: "10",
+          value: 10,
+        },
+        {
+          text: "25",
+          value: 25,
+        },
+        {
+          text: "All",
+          value: attendanceData.length,
+        },
+      ];
+
+
+
     return (
         <div className='attendanceEmployee'>
             <div className="textContainer">
@@ -104,6 +163,68 @@ const AttendanceEmployee = () => {
                     </div>
                 </div>
             </div>
+            <div className="input">
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="Date"
+                    className="mb-3"
+                >
+                    <Form.Control type="date" placeholder="Date" />
+                </FloatingLabel>
+                <FloatingLabel
+                    controlId="floatingSelectGrid"
+                    label="Select Month"
+                    className="mb-3"
+                >
+                    <Form.Select aria-label="--Select--">
+                        <option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                        <option value="3">Mar</option>
+                        <option value="4">Apr</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">Aug</option>
+                        <option value="9">Sep</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                    </Form.Select>
+                </FloatingLabel>
+                <FloatingLabel
+                    controlId="floatingSelectGrid"
+                    label="Select Year"
+                    className="mb-3"
+                >
+                    <Form.Select aria-label="--Select--">
+                        <option value="1">2023</option>
+                        <option value="2">2022</option>
+                        <option value="3">2021</option>
+                        <option value="3">2020</option>
+                        <option value="3">2019</option>
+                        <option value="3">2018</option>
+                    </Form.Select>
+                </FloatingLabel>
+                <button className="btn-success width-sm">
+                    SEARCH
+                </button>
+            </div>
+            <Row>
+              <Col>
+                <Card>
+                  <Card.Body>
+                    <Table
+                      columns={columns}
+                      data={attendanceData}
+                      pageSize={5}
+                      sizePerPageList={sizePerPageList}
+                      isSortable={true}
+                      pagination={true}
+                    />
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
         </div>
     );
 };
