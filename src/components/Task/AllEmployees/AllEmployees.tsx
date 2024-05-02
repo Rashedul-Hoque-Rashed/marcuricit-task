@@ -1,13 +1,15 @@
 import './allEmployees.scss';
-import { Button, Card, Col, Dropdown, FloatingLabel, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Card, Col, Dropdown, FloatingLabel, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import { employeesData } from './data';
 import { useState } from 'react';
+import Table from '../../Table';
 
 const AllEmployees = () => {
   const [showCenteredModal, setShowCenteredModal] = useState<boolean>(false);
   const [showScrollableModal, setShowScrollableModal] = useState<boolean>(false);
   const [validated, setValidated] = useState<boolean>(false);
-
+  const [grid, setGrid] = useState<boolean>(true);
+  
   /*
    * handle form submission
    */
@@ -21,6 +23,108 @@ const AllEmployees = () => {
     setValidated(true);
   };
 
+  const columns = [
+    {
+      Header: "ID",
+      accessor: "id",
+      sort: true,
+    },
+    {
+      Header: "Name",
+      accessor: "name",
+      sort: true,
+    },
+    {
+      Header: "Employee ID",
+      accessor: "employeeId",
+      sort: false,
+    },
+    {
+      Header: "Email",
+      accessor: "email",
+      sort: true,
+    },
+    {
+      Header: "Mobile",
+      accessor: "mobile",
+      sort: false,
+    },
+    {
+      Header: "Join Date",
+      accessor: "joiningDate",
+      sort: true,
+    },
+    {
+      Header: "Role",
+      accessor: "role",
+      sort: false,
+    },
+    {
+      Header: "Action",
+      accessor: "action",
+      Cell: () => {
+        const [showCenteredModal, setShowCenteredModal] = useState(false);
+        
+        return (
+          <>
+            <Dropdown className="action float-end" align="end">
+              <Dropdown.Toggle as="a" className="cursor-pointer arrow-none">
+                <i className="uil uil-ellipsis-v fs-16 text-black"></i>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => setShowScrollableModal(true)}>
+                  <i className="uil uil-edit-alt me-2"></i>Edit
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item className="text-danger" onClick={() => setShowCenteredModal(true)}>
+                  <i className="uil uil-trash me-2"></i>Delete
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Modal
+              show={showCenteredModal}
+              onHide={() => setShowCenteredModal(false)}
+              centered
+            >
+              <Modal.Header closeButton>
+              </Modal.Header>
+              <Modal.Body className='text-center'>
+                <h3>Delete Employee</h3>
+                <h6>Are you sure want to delete?</h6>
+              </Modal.Body>
+              <Modal.Footer className='mx-auto'>
+                <Button variant="danger">Delete</Button>
+                <Button variant="light" onClick={() => setShowCenteredModal(false)}>
+                  Cancel
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
+        );
+      },
+      sort: false,
+    },
+  ];
+  
+  const sizePerPageList = [
+    {
+      text: "5",
+      value: 5,
+    },
+    {
+      text: "10",
+      value: 10,
+    },
+    {
+      text: "25",
+      value: 25,
+    },
+    {
+      text: "All",
+      value: employeesData.length,
+    },
+  ];
+
 
   return (
     <div className="allEmployees">
@@ -30,8 +134,8 @@ const AllEmployees = () => {
           <h4>Dashboard / Employee</h4>
         </div>
         <div className="actionContainer">
-          <i className="uil uil-grid fs-24"></i>
-          <i className="uil uil-list-ul fs-24"></i>
+          <i className="uil uil-grid fs-24" onClick={()=>setGrid(true)}></i>
+          <i className="uil uil-list-ul fs-24" onClick={()=>setGrid(false)}></i>
           <button onClick={() => setShowScrollableModal(true)}>+ Add Employee</button>
         </div>
 
@@ -211,6 +315,7 @@ const AllEmployees = () => {
 
       </div>
       <div className="wrapper">
+        <div className="input">
         <FloatingLabel
           controlId="floatingInput"
           label="Employee ID"
@@ -239,8 +344,10 @@ const AllEmployees = () => {
         <button className="btn-success width-sm">
           SEARCH
         </button>
+        </div>
+        <div className={`${grid ? 'employeesCard' : ''}`}>    
         {
-          employeesData.map(data => (
+          grid ? employeesData.map(data => (
             <Card className="employeeCard">
               <Dropdown className="action float-end" align="end">
                 <Dropdown.Toggle as="a" className="cursor-pointer arrow-none">
@@ -289,8 +396,24 @@ const AllEmployees = () => {
                 </div>
               </Card.Body>
             </Card>
-          ))
+          )) :  <Row>
+          <Col>
+            <Card>
+              <Card.Body>
+                <Table
+                  columns={columns}
+                  data={employeesData}
+                  pageSize={5}
+                  sizePerPageList={sizePerPageList}
+                  isSortable={true}
+                  pagination={true}
+                />
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
         }
+        </div>
       </div>
     </div>
   );
