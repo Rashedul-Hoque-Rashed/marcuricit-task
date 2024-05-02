@@ -1,0 +1,43 @@
+.leavesEmployee{
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+
+
+        .actionContainer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+
+            button {
+                margin-left: 16px;
+                border-radius: 50px;
+                padding: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                border-color: #58a6ff;
+
+                &:hover {
+                    background-color: #58a6ff;
+                }
+            }
+        }
+    }
+
+    .boxes{
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        column-gap: 20px;
+        margin-right: 70px;
+        margin-bottom: 20px;
+
+        .box{
+            padding: 10px 20px;
+            background-color: white;
+            text-align: center;
+        }
+    }
+}
