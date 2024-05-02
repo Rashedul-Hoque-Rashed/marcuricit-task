@@ -1,9 +1,8 @@
-import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
+import { Card, Col, Modal, Row } from 'react-bootstrap';
 import './attendanceAdmin.scss'
 import { CellProps } from 'react-table';
 import Table from '../../Table';
-import {attendanceData} from './data'
-import { Form } from 'react-bootstrap';
+import { attendanceData } from './data'
 import { useState } from 'react';
 
 
@@ -15,7 +14,10 @@ interface AttendanceData {
 
 const AttendanceAdmin = () => {
 
-    const [showCenteredModal7, setShowCenteredModal7] = useState<boolean>(false);
+    const [show, setShow] = useState<boolean>(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
     const columns = [
@@ -40,92 +42,49 @@ const AttendanceAdmin = () => {
                 accessor: `day${day}`,
                 Cell: (props: CellProps<any>) => {
                     const { attendance } = props.row.original;
-                    const filter = attendance.filter((data:AttendanceData) => data.day === day)
+                    const filter = attendance.filter((data: AttendanceData) => data.day === day)
                     const status = filter[0]?.status;
                     console.log(status === 'present');
                     return status === 'present' ? <div>
-                        <i onClick={() => setShowCenteredModal7(true)} className='uil uil-check fs-16 text-success cursor-pointer'></i>
+                        <i onClick={handleShow} className='uil uil-check fs-16 text-success cursor-pointer'></i>
 
-                        <Modal
-                            show={showCenteredModal7}
-                            onHide={() => setShowCenteredModal7(false)}
-                            centered
-                        >
-                            <Modal.Header closeButton>
-                                <h2>Edit Leaves</h2>
+                        <Modal show={show} onHide={handleClose} className='modal'>
+                            <Modal.Header onHide={handleClose} closeButton>
+                                <Modal.Title as="h3">Attendance Info</Modal.Title>
                             </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>
-                                            Leaves Type
-                                        </Form.Label>
-                                        <Col>
-                                            <Form.Select>
-                                                <option>Casual Leave</option>
-                                                <option>Medical Leave</option>
-                                                <option>Loss of Pay</option>
-                                            </Form.Select>
-                                        </Col>
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="title">From</Form.Label>
-                                        <Form.Control
-                                            type="date"
-                                            name="from"
-                                            id="from"
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="title">To</Form.Label>
-                                        <Form.Control
-                                            type="date"
-                                            name="to"
-                                            id="to"
-                                        />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="date">Number Of Day</Form.Label>
-                                        <Form.Control
-                                            type="number"
-                                            name="noOfDay"
-                                            id="noOfDay"
-                                            min={0}
-                                            max={12}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="date">Remaining Leaves</Form.Label>
-                                        <Form.Control
-                                            type="number"
-                                            name="noOfDay"
-                                            id="noOfDay"
-                                            max={12}
-                                            min={0}
-                                        />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="example-textarea">
-                                            Leave Reason
-                                        </Form.Label>
-                                        <Col>
-                                            <Form.Control as="textarea" rows={3} id="example-textarea" />
-                                        </Col>
-                                    </Form.Group>
-
-
-
-                                </Form>
+                            <Modal.Body className='body'>
+                                <div className='content'>
+                                    <h4>Timesheet <span>{filter[0]?.date}</span> </h4>
+                                    <div className='punch'>
+                                        <h6>Punch In at</h6>
+                                        <p>{filter[0]?.punchIn} AM</p>
+                                    </div>
+                                    <div className='time'>
+                                        <h4>3.45 hrs</h4>
+                                    </div>
+                                    <div className='punch'>
+                                        <h6>Punch Out at</h6>
+                                        <p>{filter[0]?.punchOut} PM</p>
+                                    </div>
+                                    <div className='extra'>
+                                        <div className='break'>
+                                            <h6>
+                                                Break
+                                            </h6>
+                                            <p>{filter[0]?.break} hrs</p>
+                                        </div>
+                                        <div className='overtime'>
+                                            <h6>
+                                                Overtime
+                                            </h6>
+                                            <p>{filter[0]?.overtime} hrs</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </Modal.Body>
-                            <Modal.Footer className='mx-auto'>
-                                <Button variant="primary" type="submit">
-                                    Submit
-                                </Button>
-                            </Modal.Footer>
                         </Modal>
-                        </div> : <i className='uil uil-times fs-16 text-danger'></i>;
+
+                    </div> : <i className='uil uil-times fs-16 text-danger'></i>;
                 },
                 sort: false,
             };
