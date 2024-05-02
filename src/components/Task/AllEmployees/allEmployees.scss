@@ -6,12 +6,12 @@
         justify-content: space-between;
         padding: 20px 0;
 
-    
-            .addEmployeeForm {
-                display: grid;
-                grid-template-columns: 50% 50%;
-            }
-        
+
+        .addEmployeeForm {
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+
 
         .actionContainer {
             display: flex;
@@ -40,6 +40,16 @@
                 }
             }
 
+            .activeBtn {
+                padding: 1px 5px;
+                color: white;
+                background-color: #58a6ff;
+                // border: 1px solid gray;
+                // border-radius: 5px;
+                // cursor: pointer;
+                // transition: all 0.1s ease;
+            }
+
             button {
                 margin-left: 16px;
                 border-radius: 50px;
@@ -57,14 +67,14 @@
 
     .wrapper {
 
-        .input{
+        .input {
             display: grid;
             grid-template-columns: 25% 25% 25% 25%;
             column-gap: 20px;
             margin-right: 70px;
         }
 
-        .employeesCard{
+        .employeesCard {
             display: grid;
             grid-template-columns: 25% 25% 25% 25%;
             column-gap: 20px;
