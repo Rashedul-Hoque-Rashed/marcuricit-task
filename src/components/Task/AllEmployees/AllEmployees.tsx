@@ -149,7 +149,7 @@ const AllEmployees = () => {
     },
     {
       text: "All",
-      value: employeesData.length,
+      value: filteredData.length,
     },
   ];
 
@@ -427,6 +427,7 @@ const AllEmployees = () => {
                                 type="text"
                                 placeholder="Username"
                                 aria-describedby="inputGroupPrepend"
+                                defaultValue={data.userName}
                                 required
                               />
                               <Form.Control.Feedback type="invalid">
