@@ -17,7 +17,8 @@ export const leavesData = [
       "leaveType": "Annual Leave",
       "from": "2024-06-01",
       "to": "2024-06-03",
-      "noOfDay": '3 days',
+      "noOfDay": 3,
+      'remaining': 4,
       "reason": "Vacation with family",
       "status": "Approved"
     },
@@ -28,7 +29,8 @@ export const leavesData = [
       "leaveType": "Sick Leave",
       "from": "2024-07-10",
       "to": "2024-07-11",
-      "noOfDay": '2 days', 
+      "noOfDay": 2,
+      'remaining': 4, 
       "reason": "Flu",
       "status": "Approved"
     },
@@ -39,7 +41,8 @@ export const leavesData = [
       "leaveType": "Maternity Leave",
       "from": "2024-09-15",
       "to": "2024-12-15",
-      "noOfDay": '92 days',
+      "noOfDay": 92,
+      'remaining': 4,
       "reason": "Maternity",
       "status": "Pending"
     },
@@ -50,7 +53,8 @@ export const leavesData = [
       "leaveType": "Emergency Leave",
       "from": "2024-10-20",
       "to": "2024-10-20",
-      "noOfDay": '1 day',
+      "noOfDay": 1,
+      'remaining': 4,
       "reason": "Family emergency",
       "status": "Approved"
     },
@@ -61,7 +65,8 @@ export const leavesData = [
       "leaveType": "Personal Leave",
       "from": "2024-11-05",
       "to": "2024-11-06",
-      "noOfDay": '2 days',
+      "noOfDay": 2,
+      'remaining': 4,
       "reason": "Attending friend's wedding",
       "status": "Approved"
     },
@@ -72,7 +77,8 @@ export const leavesData = [
       "leaveType": "Annual Leave",
       "from": "2024-12-20",
       "to": "2024-12-30",
-      "noOfDay": '11 days',
+      "noOfDay": 11,
+      'remaining': 4,
       "reason": "Vacation abroad",
       "status": "Pending"
     },
@@ -83,7 +89,8 @@ export const leavesData = [
       "leaveType": "Sick Leave",
       "from": "2024-03-05",
       "to": "2024-03-07",
-      "noOfDay": '3 days',
+      "noOfDay": 3,
+      'remaining': 4,
       "reason": "Cold and fever",
       "status": "Approved"
     },
@@ -94,7 +101,8 @@ export const leavesData = [
       "leaveType": "Emergency Leave",
       "from": "2024-08-10",
       "to": "2024-08-12",
-      "noOfDay": '3 days',
+      "noOfDay": 3,
+      'remaining': 4,
       "reason": "Medical emergency",
       "status": "Rejected"
     },
@@ -105,7 +113,8 @@ export const leavesData = [
       "leaveType": "Personal Leave",
       "from": "2024-04-25",
       "to": "2024-04-26",
-      "noOfDay": '2 days',
+      "noOfDay": 2,
+      'remaining': 4,
       "reason": "Attending graduation ceremony",
       "status": "Approved"
     },
@@ -116,7 +125,8 @@ export const leavesData = [
       "leaveType": "Maternity Leave",
       "from": "2024-11-20",
       "to": "2025-02-20",
-      "noOfDay": '93 days',
+      "noOfDay": 93,
+      'remaining': 4,
       "reason": "Maternity",
       "status": "Pending"
     }

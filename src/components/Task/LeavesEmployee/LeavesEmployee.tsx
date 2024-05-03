@@ -4,10 +4,22 @@ import { Button } from 'react-bootstrap';
 import './LeavesEmployee.scss'
 import {leavesData} from './data';
 import Table from '../../Table';
+import { CellProps } from 'react-table';
 
 const LeavesEmployee = () => {
     const [showCenteredModal4, setShowCenteredModal4] = useState<boolean>(false);
     const [showCenteredModal5, setShowCenteredModal5] = useState<boolean>(false);
+    const [editData, setEditData] = useState<any>([]);
+
+    const handleEdit = (rowData: any) => {
+        setEditData(rowData); 
+        setShowCenteredModal4(true); 
+    };
+
+    const handleCloseEditModal = () => {
+        setShowCenteredModal4(false);
+        setEditData([]); 
+    };
 
 
 
@@ -45,7 +57,8 @@ const LeavesEmployee = () => {
         {
             Header: "Action",
             accessor: "action",
-            Cell: () => {
+            Cell: (props: CellProps<any>) => {
+                const { original: rowData } = props.row;
                 const [showCenteredModal, setShowCenteredModal] = useState(false);
 
                 return (
@@ -55,7 +68,7 @@ const LeavesEmployee = () => {
                                 <i className="uil uil-ellipsis-v fs-16 text-black"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => setShowCenteredModal4(true)}>
+                                <Dropdown.Item onClick={() => handleEdit(rowData)}>
                                     <i className="uil uil-edit-alt me-2"></i>Edit
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
@@ -113,6 +126,7 @@ const LeavesEmployee = () => {
                                             id="noOfDay"
                                             min={0}
                                             max={12}
+                                            defaultValue={editData?.noOfDay}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3">
@@ -123,6 +137,7 @@ const LeavesEmployee = () => {
                                             id="noOfDay"
                                             max={12}
                                             min={0}
+                                            defaultValue={editData?.remaining}
                                         />
                                     </Form.Group>
 
@@ -131,7 +146,7 @@ const LeavesEmployee = () => {
                                             Leave Reason
                                         </Form.Label>
                                         <Col>
-                                            <Form.Control as="textarea" rows={3} id="example-textarea" />
+                                            <Form.Control as="textarea" rows={3} defaultValue={editData?.reason} id="example-textarea" />
                                         </Col>
                                     </Form.Group>
 

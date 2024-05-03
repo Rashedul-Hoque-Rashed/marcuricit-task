@@ -7,11 +7,23 @@ import { Form } from 'react-bootstrap';
 import { CellProps } from 'react-table';
 
 
+
 const Holiday = () => {
 
 
     const [showCenteredModal2, setShowCenteredModal2] = useState<boolean>(false);
     const [showCenteredModal3, setShowCenteredModal3] = useState<boolean>(false);
+    const [editData, setEditData] = useState<any>([]);
+
+    const handleEdit = (rowData: any) => {
+        setEditData(rowData); 
+        setShowCenteredModal2(true); 
+    };
+
+    const handleCloseEditModal = () => {
+        setShowCenteredModal2(false);
+        setEditData([]); 
+    };
 
 
     const columns = [
@@ -39,8 +51,8 @@ const Holiday = () => {
             Header: "Action",
             accessor: "action",
             Cell: (props: CellProps<any>) => {
-                const { title } = props.row.original;
-                console.log(title);
+                const { original: rowData } = props.row;
+                
                 const [showCenteredModal, setShowCenteredModal] = useState(false);
 
                 return (
@@ -50,7 +62,7 @@ const Holiday = () => {
                                 <i className="uil uil-ellipsis-v fs-16 text-black"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => setShowCenteredModal2(true)}>
+                                <Dropdown.Item onClick={() => handleEdit(rowData)}>
                                     <i className="uil uil-edit-alt me-2"></i>Edit
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
@@ -77,7 +89,7 @@ const Holiday = () => {
                                             type="text"
                                             name="title"
                                             id="title"
-                                            defaultValue={title}
+                                            defaultValue={editData?.title}
                                         />
                                     </Form.Group>
 
