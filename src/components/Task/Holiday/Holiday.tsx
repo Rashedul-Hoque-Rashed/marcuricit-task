@@ -86,13 +86,13 @@ const Holiday = () => {
                                     </Form.Group>
 
 
-                    
+
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer className='mx-auto'>
-                            <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
                             </Modal.Footer>
                         </Modal>
 
@@ -156,43 +156,43 @@ const Holiday = () => {
 
 
                 <Modal
-                            show={showCenteredModal3}
-                            onHide={() => setShowCenteredModal3(false)}
-                            centered
-                        >
-                            <Modal.Header closeButton>
-                                <h2>Add Holiday</h2>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="title">Holiday Name</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            name="title"
-                                            id="title"
-                                        />
-                                    </Form.Group>
+                    show={showCenteredModal3}
+                    onHide={() => setShowCenteredModal3(false)}
+                    centered
+                >
+                    <Modal.Header closeButton>
+                        <h2>Add Holiday</h2>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3">
+                                <Form.Label htmlFor="title">Holiday Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                />
+                            </Form.Group>
 
-                                    <Form.Group className="">
-                                        <Form.Label htmlFor="date">Holiday Date</Form.Label>
-                                        <Form.Control
-                                            type="date"
-                                            name="date"
-                                            id="date"
-                                        />
-                                    </Form.Group>
+                            <Form.Group className="">
+                                <Form.Label htmlFor="date">Holiday Date</Form.Label>
+                                <Form.Control
+                                    type="date"
+                                    name="date"
+                                    id="date"
+                                />
+                            </Form.Group>
 
 
-                    
-                                </Form>
-                            </Modal.Body>
-                            <Modal.Footer className='mx-auto'>
-                            <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                            </Modal.Footer>
-                        </Modal>
+
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer className='mx-auto'>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
 
 
