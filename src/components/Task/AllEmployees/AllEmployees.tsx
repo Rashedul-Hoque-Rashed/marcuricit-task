@@ -1,7 +1,7 @@
 import './allEmployees.scss';
 import { Button, Card, Col, Dropdown, FloatingLabel, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import { employeesData } from './data';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Table from '../../Table';
 
 const AllEmployees = () => {
@@ -10,10 +10,36 @@ const AllEmployees = () => {
   const [showScrollableEditModal, setShowScrollableEditModal] = useState<boolean>(false);
   const [validated, setValidated] = useState<boolean>(false);
   const [grid, setGrid] = useState<boolean>(true);
+  const [filteredData, setFilteredData] = useState(employeesData);
+  const [searchEmployeeId, setSearchEmployeeId] = useState('');
+  const [searchEmployeeName, setSearchEmployeeName] = useState('');
 
-  /*
-   * handle form submission
-   */
+  
+  const handleFilter = () => {
+    const filtered = employeesData.filter(employee => {
+      const idMatch = employee.employeeId.toLowerCase().includes(searchEmployeeId.toLowerCase());
+      const nameMatch = employee.name.toLowerCase().includes(searchEmployeeName.toLowerCase());
+      return idMatch && nameMatch;
+    });
+    setFilteredData(filtered);
+  };
+
+  
+  const handleEmployeeIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchEmployeeId(event.target.value);
+  };
+
+  
+  const handleEmployeeNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchEmployeeName(event.target.value);
+  };
+
+  
+  useEffect(() => {
+    handleFilter();
+  }, [searchEmployeeId, searchEmployeeName]);
+
+  
   const handleSubmit = (event: any) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -321,14 +347,14 @@ const AllEmployees = () => {
             label="Employee ID"
             className="mb-3"
           >
-            <Form.Control type="text" placeholder="Employee ID" />
+            <Form.Control type="text" placeholder="Employee ID" value={searchEmployeeId} onChange={handleEmployeeIdChange} />
           </FloatingLabel>
           <FloatingLabel
             controlId="floatingInput"
             label="Employee Name"
             className="mb-3"
           >
-            <Form.Control type="text" placeholder="Employee Name" />
+            <Form.Control type="text" placeholder="Employee Name" value={searchEmployeeName} onChange={handleEmployeeNameChange} />
           </FloatingLabel>
           <FloatingLabel
             controlId="floatingSelectGrid"
@@ -347,7 +373,7 @@ const AllEmployees = () => {
         </div>
         <div className={`${grid ? 'employeesCard' : ''}`}>
           {
-            grid ? employeesData.map(data => (
+            grid ? filteredData.map(data => (
               <Card className="employeeCard" key={data.id}>
                 <Dropdown className="action float-end" align="end">
                   <Dropdown.Toggle as="a" className="cursor-pointer arrow-none">
@@ -580,7 +606,7 @@ const AllEmployees = () => {
                   <Card.Body>
                     <Table
                       columns={columns}
-                      data={employeesData}
+                      data={filteredData}
                       pageSize={5}
                       sizePerPageList={sizePerPageList}
                       isSortable={true}

@@ -4,6 +4,8 @@ import Table from '../../Table';
 import { useState } from 'react';
 import { holidayData } from './data'
 import { Form } from 'react-bootstrap';
+import { CellProps } from 'react-table';
+
 
 const Holiday = () => {
 
@@ -36,7 +38,9 @@ const Holiday = () => {
         {
             Header: "Action",
             accessor: "action",
-            Cell: () => {
+            Cell: (props: CellProps<any>) => {
+                const { title } = props.row.original;
+                console.log(title);
                 const [showCenteredModal, setShowCenteredModal] = useState(false);
 
                 return (
@@ -73,6 +77,7 @@ const Holiday = () => {
                                             type="text"
                                             name="title"
                                             id="title"
+                                            defaultValue={title}
                                         />
                                     </Form.Group>
 
