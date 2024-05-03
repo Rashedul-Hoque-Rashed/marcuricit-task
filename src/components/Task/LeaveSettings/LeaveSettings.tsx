@@ -10,7 +10,12 @@ const LeaveSettings = () => {
 
     const [showCenteredModal8, setShowCenteredModal8] = useState<boolean>(false);
     const [showCenteredModal9, setShowCenteredModal9] = useState<boolean>(false);
-    const [toggleOn, setToggleOn] = useState<boolean>(true);
+    const [toggleOn1, setToggleOn1] = useState<boolean>(true);
+    const [toggleOn2, setToggleOn2] = useState<boolean>(true);
+    const [toggleOn3, setToggleOn3] = useState<boolean>(true);
+    const [toggleOn4, setToggleOn4] = useState<boolean>(true);
+    const [toggleOn5, setToggleOn5] = useState<boolean>(true);
+    const [toggleOn6, setToggleOn6] = useState<boolean>(true);
     const [edit1, setEdit1] = useState<boolean>(false);
     const [edit2, setEdit2] = useState<boolean>(false);
     const [edit3, setEdit3] = useState<boolean>(false);
@@ -226,9 +231,9 @@ const LeaveSettings = () => {
             <div className='content'>
                 <div className='titleDiv'>
                     <h4 className="title">Annual</h4>
-                    <button className={`${toggleOn ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn(!toggleOn)}>
+                    <button className={`${toggleOn1 ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn1(!toggleOn1)}>
                         {
-                            toggleOn ? 'ON' : 'OFF'
+                            toggleOn1 ? 'ON' : 'OFF'
                         }
                         <i className='uli uil-circle'></i>
                     </button>
@@ -360,9 +365,9 @@ const LeaveSettings = () => {
             <div className='content'>
                 <div className='titleDiv'>
                     <h4 className="title">Sick</h4>
-                    <button className={`${toggleOn ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn(!toggleOn)}>
+                    <button className={`${toggleOn2 ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn2(!toggleOn2)}>
                         {
-                            toggleOn ? 'ON' : 'OFF'
+                            toggleOn2 ? 'ON' : 'OFF'
                         }
                         <i className='uli uil-circle'></i>
                     </button>
@@ -456,9 +461,9 @@ const LeaveSettings = () => {
             <div className='content'>
                 <div className='titleDiv'>
                     <h4 className="title">Hospitalisation</h4>
-                    <button className={`${toggleOn ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn(!toggleOn)}>
+                    <button className={`${toggleOn3 ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn3(!toggleOn3)}>
                         {
-                            toggleOn ? 'ON' : 'OFF'
+                            toggleOn3 ? 'ON' : 'OFF'
                         }
                         <i className='uli uil-circle'></i>
                     </button>
@@ -485,9 +490,9 @@ const LeaveSettings = () => {
             <div className='content'>
                 <div className='titleDiv'>
                     <h4 className="title">Maternity Assigned to female only</h4>
-                    <button className={`${toggleOn ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn(!toggleOn)}>
+                    <button className={`${toggleOn4 ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn4(!toggleOn4)}>
                         {
-                            toggleOn ? 'ON' : 'OFF'
+                            toggleOn4 ? 'ON' : 'OFF'
                         }
                         <i className='uli uil-circle'></i>
                     </button>
@@ -514,9 +519,9 @@ const LeaveSettings = () => {
             <div className='content'>
                 <div className='titleDiv'>
                     <h4 className="title">Paternity Assigned to male only</h4>
-                    <button className={`${toggleOn ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn(!toggleOn)}>
+                    <button className={`${toggleOn5 ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn5(!toggleOn5)}>
                         {
-                            toggleOn ? 'ON' : 'OFF'
+                            toggleOn5 ? 'ON' : 'OFF'
                         }
                         <i className='uli uil-circle'></i>
                     </button>
@@ -543,9 +548,9 @@ const LeaveSettings = () => {
             <div className='content'>
                 <div className='titleDiv'>
                     <h4 className="title">LOP</h4>
-                    <button className={`${toggleOn ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn(!toggleOn)}>
+                    <button className={`${toggleOn6 ? 'toggleBtnOn' : 'toggleBtnOff'} `} onClick={() => setToggleOn6(!toggleOn6)}>
                         {
-                            toggleOn ? 'ON' : 'OFF'
+                            toggleOn6 ? 'ON' : 'OFF'
                         }
                         <i className='uli uil-circle'></i>
                     </button>
