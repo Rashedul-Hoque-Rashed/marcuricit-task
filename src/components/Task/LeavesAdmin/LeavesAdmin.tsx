@@ -1,6 +1,6 @@
 import { Card, Col, Dropdown, FloatingLabel, Form, Modal, Row } from 'react-bootstrap';
 import './leavesAdmin.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { leavesData } from './data'
 import Table from '../../Table';
 import { Button } from 'react-bootstrap';
@@ -10,15 +10,47 @@ const LeavesAdmin = () => {
     const [showCenteredModal4, setShowCenteredModal4] = useState<boolean>(false);
     const [showCenteredModal5, setShowCenteredModal5] = useState<boolean>(false);
     const [editData, setEditData] = useState<any>([]);
+    const [filteredData, setFilteredData] = useState(leavesData);
+    const [searchEmployeeName, setSearchEmployeeName] = useState('');
+    const [selectedLeaveType, setSelectedLeaveType] = useState('');
+    const [selectedLeaveStatus, setSelectedLeaveStatus] = useState('');
+
+
+    const handleFilter = () => {
+        const filtered = leavesData.filter(employee => {
+            const nameMatch = employee.name.toLowerCase().includes(searchEmployeeName.toLowerCase());
+            const typeMatch = !selectedLeaveType || employee.leaveType === selectedLeaveType;
+            const statusMatch = !selectedLeaveStatus || employee.status === selectedLeaveStatus;
+            return nameMatch && typeMatch && statusMatch;
+        });
+        setFilteredData(filtered);
+    };
+
+
+    const handleEmployeeNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchEmployeeName(event.target.value);
+    };
+
+    const handleLeaveTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedLeaveType(event.target.value);
+    };
+
+    const handleLeaveStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedLeaveStatus(event.target.value);
+    };
+
+    useEffect(() => {
+        handleFilter();
+    }, [searchEmployeeName, selectedLeaveType, selectedLeaveStatus]);
 
     const handleEdit = (rowData: any) => {
-        setEditData(rowData); 
-        setShowCenteredModal4(true); 
+        setEditData(rowData);
+        setShowCenteredModal4(true);
     };
 
     const handleCloseEditModal = () => {
         setShowCenteredModal4(false);
-        setEditData([]); 
+        setEditData([]);
     };
 
     const columns = [
@@ -216,7 +248,7 @@ const LeavesAdmin = () => {
         },
         {
             text: "All",
-            value: leavesData.length,
+            value: filteredData.length,
         },
     ];
 
@@ -234,84 +266,84 @@ const LeavesAdmin = () => {
                 </div>
 
                 <Modal
-                            show={showCenteredModal5}
-                            onHide={() => setShowCenteredModal5(false)}
-                            centered
-                        >
-                            <Modal.Header closeButton>
-                                <h2>Add Leaves</h2>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>
-                                            Leaves Type
-                                        </Form.Label>
-                                        <Col>
-                                            <Form.Select>
-                                                <option>Casual Leave</option>
-                                                <option>Medical Leave</option>
-                                                <option>Loss of Pay</option>
-                                            </Form.Select>
-                                        </Col>
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="title">From</Form.Label>
-                                        <Form.Control
-                                            type="date"
-                                            name="from"
-                                            id="from"
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="title">To</Form.Label>
-                                        <Form.Control
-                                            type="date"
-                                            name="to"
-                                            id="to"
-                                        />
-                                    </Form.Group>
+                    show={showCenteredModal5}
+                    onHide={() => setShowCenteredModal5(false)}
+                    centered
+                >
+                    <Modal.Header closeButton>
+                        <h2>Add Leaves</h2>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className="mb-3">
+                                <Form.Label>
+                                    Leaves Type
+                                </Form.Label>
+                                <Col>
+                                    <Form.Select>
+                                        <option>Casual Leave</option>
+                                        <option>Medical Leave</option>
+                                        <option>Loss of Pay</option>
+                                    </Form.Select>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label htmlFor="title">From</Form.Label>
+                                <Form.Control
+                                    type="date"
+                                    name="from"
+                                    id="from"
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label htmlFor="title">To</Form.Label>
+                                <Form.Control
+                                    type="date"
+                                    name="to"
+                                    id="to"
+                                />
+                            </Form.Group>
 
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="date">Number Of Day</Form.Label>
-                                        <Form.Control
-                                            type="number"
-                                            name="noOfDay"
-                                            id="noOfDay"
-                                            min={0}
-                                            max={12}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="date">Remaining Leaves</Form.Label>
-                                        <Form.Control
-                                            type="number"
-                                            name="noOfDay"
-                                            id="noOfDay"
-                                            max={12}
-                                            min={0}
-                                        />
-                                    </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label htmlFor="date">Number Of Day</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    name="noOfDay"
+                                    id="noOfDay"
+                                    min={0}
+                                    max={12}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label htmlFor="date">Remaining Leaves</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    name="noOfDay"
+                                    id="noOfDay"
+                                    max={12}
+                                    min={0}
+                                />
+                            </Form.Group>
 
-                                    <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="example-textarea">
-                                            Leave Reason
-                                        </Form.Label>
-                                        <Col>
-                                            <Form.Control as="textarea" rows={3} id="example-textarea" />
-                                        </Col>
-                                    </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label htmlFor="example-textarea">
+                                    Leave Reason
+                                </Form.Label>
+                                <Col>
+                                    <Form.Control as="textarea" rows={3} id="example-textarea" />
+                                </Col>
+                            </Form.Group>
 
 
 
-                                </Form>
-                            </Modal.Body>
-                            <Modal.Footer className='mx-auto'>
-                                <Button variant="primary" type="submit">
-                                    Submit
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer className='mx-auto'>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
             </div>
             <div className="boxes">
@@ -338,26 +370,30 @@ const LeavesAdmin = () => {
                     label="Employee Name"
                     className="mb-3"
                 >
-                    <Form.Control type="text" placeholder="Employee Name" />
+                    <Form.Control type="text" placeholder="Employee Name" value={searchEmployeeName} onChange={handleEmployeeNameChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     controlId="floatingSelectGrid"
                     label="Leave Type"
                 >
-                    <Form.Select aria-label="--Select--">
-                        <option value="1">Casual Leave</option>
-                        <option value="2">Medical Leave</option>
-                        <option value="3">Loss of Pay</option>
+                    <Form.Select aria-label="--Select--" value={selectedLeaveType} onChange={handleLeaveTypeChange}>
+                        <option value="">--select--</option>
+                        <option value="Annual Leave">Annual Leave</option>
+                        <option value="Sick Leave">Sick Leave</option>
+                        <option value="Maternity Leave">Maternity Leave</option>
+                        <option value="Emergency Leave">Emergency Leave</option>
+                        <option value="Personal Leave">Personal Leave</option>
                     </Form.Select>
                 </FloatingLabel>
                 <FloatingLabel
                     controlId="floatingSelectGrid"
                     label="Leave Status"
                 >
-                    <Form.Select aria-label="--Select--">
-                        <option value="1">Approve</option>
-                        <option value="2">Pending</option>
-                        <option value="3">Decline</option>
+                    <Form.Select aria-label="--Select--" value={selectedLeaveStatus} onChange={handleLeaveStatusChange}>
+                        <option value="">--Select--</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Rejected">Rejected</option>
                     </Form.Select>
                 </FloatingLabel>
                 <FloatingLabel
@@ -386,7 +422,7 @@ const LeavesAdmin = () => {
                         <Card.Body>
                             <Table
                                 columns={columns}
-                                data={leavesData}
+                                data={filteredData}
                                 pageSize={5}
                                 sizePerPageList={sizePerPageList}
                                 isSortable={true}
